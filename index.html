@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeremiah Baylon | IT Instructor & Web Developer</title>
+    
+    <!-- Browser Tab Favicon (Adaptive Light/Dark Mode text icon) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Etext %7B fill: %230b0f19; %7D @media (prefers-color-scheme: dark) %7B text %7B fill: %23f1f5f9; %7D %7D%3C/style%3E%3Ctext x='5' y='75' font-family='Inter, system-ui, sans-serif' font-weight='900' font-size='65'%3EJB%3Ctspan fill='%2338bdf8'%3E.%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Inter for a premium, clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Alternative Premium CDN for Bootstrap 5 (cdnjs) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+    <!-- Alternative CDN for Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #151f32;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(11, 15, 25, 0.85) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 180px 0 100px 0;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .accent-text {
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* Card and Components */
+        .card-custom {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-custom:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 4px 12px var(--accent-glow);
+        }
+
+        .badge-custom {
+            background-color: rgba(56, 189, 248, 0.08);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            padding: 6px 14px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            margin: 4px;
+            display: inline-block;
+        }
+
+        /* Custom Button Override */
+        .btn-accent-outline {
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            background: transparent;
+            padding: 12px 28px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-accent-outline:hover {
+            background: var(--accent-glow);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-accent-solid {
+            background-color: var(--accent);
+            color: #0b0f19;
+            border: 1px solid var(--accent);
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-accent-solid:hover {
+            background-color: #7dd3fc;
+            border-color: #7dd3fc;
+            color: #0b0f19;
+        }
+
+        /* Timeline / Experience Layout */
+        .timeline-container {
+            border-left: 2px solid rgba(255, 255, 255, 0.05);
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background-color: var(--bg-dark);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            left: -40px;
+            top: 6px;
+        }
+
+        /* Utility Section Spacing */
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white" href="#">JB<span class="accent-text">.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#domains">Domains</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-11">
+                    <p class="accent-text mb-3 text-uppercase small">Hi, my name is:</p>
+                    <h1 class="hero-title fw-bold mb-2 text-white">Jeremiah Baylon.</h1>
+                    <h2 class="hero-subtitle fw-bold mb-4" style="color: var(--text-muted);">Empowering future web developers through interactive IT instruction.</h2>
+                    <p class="lead mb-5" style="color: var(--text-muted); max-width: 680px; line-height: 1.7;">
+                        Dedicated <strong class="text-white">IT Instructor</strong> and web developer with over 6 years of experience specializing in Web Development. Focused on breaking down complex architectural logic into clear, practical lessons, while leading instructor team and guiding career shifters within the classroom.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#domains" class="btn btn-accent-outline btn-lg">View Teaching Domains</a>
+                        <a href="#contact" class="btn btn-accent-solid btn-lg">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-padding">
+        <div class="container">
+            <h2 class="fw-bold mb-5 text-white section-title"><span class="accent-text font-monospace fs-5 fw-normal">01.</span> Expertise & Competencies</h2>
+            <div class="row g-4">
+                <!-- Competency 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom">
+                        <div class="accent-text mb-4"><i class="bi bi-display fs-2"></i></div>
+                        <h4 class="text-white h5 mb-3 fw-semibold">Interactive Teaching</h4>
+                        <p class="mb-0" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Delivering core concepts through live-coding sessions, adaptable across both online and face-to-face classroom setups.</p>
+                    </div>
+                </div>
+                <!-- Competency 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom">
+                        <div class="accent-text mb-4"><i class="bi bi-people fs-2"></i></div>
+                        <h4 class="text-white h5 mb-3 fw-semibold">Team Leadership</h4>
+                        <p class="mb-0" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Leading and coordinating the instructor team, managing operational syncs, and supporting team development.</p>
+                    </div>
+                </div>
+                <!-- Competency 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom">
+                        <div class="accent-text mb-4"><i class="bi bi-code-slash fs-2"></i></div>
+                        <h4 class="text-white h5 mb-3 fw-semibold">Full-Stack Tech</h4>
+                        <p class="mb-0" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Hands-on experience delivering technical curricula across MERN, Java, and Python web development stacks.</p>
+                    </div>
+                </div>
+                <!-- Competency 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom">
+                        <div class="accent-text mb-4"><i class="bi bi-heart-fill fs-2"></i></div>
+                        <h4 class="text-white h5 mb-3 fw-semibold">Classroom Mentorship</h4>
+                        <p class="mb-0" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Providing direct, patient guidance within the classroom to help students debug code and build layout confidence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Domains Section -->
+    <section id="domains" class="section-padding">
+        <div class="container">
+            <h2 class="fw-bold mb-5 text-white section-title"><span class="accent-text font-monospace fs-5 fw-normal">02.</span> Teaching Domains</h2>
+            <div class="row g-4">
+                
+                <!-- Focus 1: Full-Stack Web Development -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-custom d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <span class="accent-text small fw-bold font-monospace text-uppercase"><i class="bi bi-code-slash me-2"></i>Full-Stack Web</span>
+                                <span class="text-white-50 small font-monospace">MERN / Python / Java</span>
+                            </div>
+                            <h3 class="h4 text-white mb-3 fw-bold">Full-Stack Development</h3>
+                            <p class="mb-0" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                                Handled high-intensity web development paths designed to be beginner-friendly. Focused on helping career shifters and professionals build core programming logic and transition smoothly into the tech space.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-2">
+                            <span class="badge-custom">Beginner Friendly</span>
+                            <span class="badge-custom">Career Shifting</span>
+                            <span class="badge-custom">Live Debugging</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Focus 2: Computer & Academic Foundations -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-custom d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <span class="accent-text small fw-bold font-monospace text-uppercase"><i class="bi bi-calculator me-2"></i>Senior High School</span>
+                                <span class="text-white-50 small font-monospace">Math & Computer</span>
+                            </div>
+                            <h3 class="h4 text-white mb-3 fw-bold">Senior High School Classes</h3>
+                            <p class="mb-0" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                                Taught Mathematics and Computer literacy subjects. Focused on delivering standard curriculum requirements clearly while helping students understand fundamental analytical logic and computer applications.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-2">
+                            <span class="badge-custom">Math Foundations</span>
+                            <span class="badge-custom">Computer Literacy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Focus 3: Robotics & Specialized Logic -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-custom d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <span class="accent-text small fw-bold font-monospace text-uppercase"><i class="bi bi-cpu-fill me-2"></i>Electives</span>
+                                <span class="text-white-50 small font-monospace">Systems & Code</span>
+                            </div>
+                            <h3 class="h4 text-white mb-3 fw-bold">Elective & Specialized Courses</h3>
+                            <p class="mb-0" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                                Managed specialized elective classes centered around practical technologies. Covered core programming with JavaScript, backend setups using Python and Django, cloud baselines with AWS, and basic microcontroller.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-2">
+                            <span class="badge-custom">Python & Django</span>
+                            <span class="badge-custom">JS & AWS</span>
+                            <span class="badge-custom">Microcontrollers</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section-padding">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="fw-bold mb-5 text-white section-title text-center"><span class="accent-text font-monospace fs-5 fw-normal">03.</span> Professional History</h2>
+            
+            <div class="timeline-container">
+                
+                <!-- Role 1: Zuitt (Instructor Supervisor) -->
+                <div class="timeline-item">
+                    <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-2">
+                        <h3 class="h5 text-white mb-0 fw-bold">Instructor Supervisor</h3>
+                        <span class="accent-text small font-monospace">Aug 2021 - Present</span>
+                    </div>
+                    <p class="text-info opacity-75 small mb-3 fw-medium">Zuitt | Quezon City (Hybrid)</p>
+                    <ul style="color: var(--text-muted); padding-left: 20px; font-size: 0.95rem; line-height: 1.7;">
+                        <li class="mb-2">Direct full-time and part-time web development curricula, managing online lectures and real-time code-along exercises across the <strong class="text-white">MERN Stack, Java, and Python</strong>.</li>
+                        <li class="mb-2">Mentor and lead the instructional team, facilitating professional development tracks, standard operational syncs, and core technical knowledge transfers.</li>
+                        <li class="mb-2">Manage daily classroom allocations, monitor performance indicators, and implement structured evaluation methods to maintain teaching benchmarks.</li>
+                        <li class="mb-2">Serve as a key link between management and the instructional group to cultivate a highly collaborative and communicative culture.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 2: Consolidated Teaching History -->
+                <div class="timeline-item">
+                    <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-2">
+                        <h3 class="h5 text-white mb-0 fw-bold">Senior High School & IT Instructor</h3>
+                        <span class="accent-text small font-monospace">Jun 2018 - May 2021</span>
+                    </div>
+                    <p class="text-info opacity-75 small mb-3 fw-medium">Secondary & Academic Institutions | Manila & Quezon</p>
+                    <ul style="color: var(--text-muted); padding-left: 20px; font-size: 0.95rem; line-height: 1.7;">
+                        <li class="mb-2">Delivered technology paths and foundational mathematics tracks to students across STEM, ABM, and HUMSS strands.</li>
+                        <li class="mb-2">Facilitated introductory <strong class="text-white">Robotics</strong> and digital imaging courses, utilizing applied logic projects to build analytical workflows.</li>
+                        <li class="mb-2">Supervised laboratory operations, managing local technical setups and providing day-to-day troubleshooting support.</li>
+                        <li class="mb-2">Guided student focus groups for collaborative initiatives, supporting core communication skills and personal leadership development.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 3: Customer Support Associate -->
+                <div class="timeline-item">
+                    <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-2">
+                        <h3 class="h5 text-white mb-0 fw-bold">Customer Support Associate</h3>
+                        <span class="accent-text small font-monospace">Oct 2016 - May 2017</span>
+                    </div>
+                    <p class="text-info opacity-75 small mb-3 fw-medium">Global Customer Operations Domain | Mandaluyong City</p>
+                    <ul style="color: var(--text-muted); padding-left: 20px; font-size: 0.95rem; line-height: 1.7;">
+                        <li class="mb-2">Provided functional phone and product support for global accounts, addressing technical questions and interface resolutions.</li>
+                        <li class="mb-2">Documented interaction logs to assist engineering pods in tracking software system bugs and performance challenges.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container text-center" style="max-width: 600px;">
+            <h2 class="fw-bold mb-3 text-white section-title"><span class="accent-text font-monospace fs-5 fw-normal">04.</span> What's Next?</h2>
+            <h3 class="h1 fw-bold text-white mb-4" style="letter-spacing: -0.02em;">Let's Connect</h3>
+            <p class="mb-5" style="color: var(--text-muted); line-height: 1.7;">
+                Always open to discussing web development, technical mentorship, academic strategy, or potential teaching collaborations. Feel free to reach out or connect directly via LinkedIn!
+            </p>
+            
+            <!-- Direct LinkedIn Button Contact -->
+            <a href="https://www.linkedin.com/in/jeremiahbaylon/" target="_blank" class="btn btn-accent-solid btn-lg px-5 py-3 fw-bold">
+                <i class="bi bi-linkedin me-2"></i>Connect on LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 border-top border-dark mt-5">
+        <div class="container">
+            <p class="small mb-0 opacity-50">Designed & Built by Jeremiah Baylon &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- Alternative CDN for Bootstrap 5 Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
